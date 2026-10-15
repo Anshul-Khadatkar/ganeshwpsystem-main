@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+  body {
+    @apply bg-paper text-ink font-sans text-[14px] leading-relaxed;
+  }
+  h1, h2, h3 {
+    @apply font-display text-ink;
+  }
+  /* Visible keyboard focus everywhere - never suppressed */
+  :focus-visible {
+    outline: 2px solid theme('colors.marigold.DEFAULT');
+    outline-offset: 2px;
+  }
+  table {
+    @apply w-full text-sm;
+  }
+  ::selection {
+    background: theme('colors.marigold.light');
+  }
+}
+
+@layer components {
+  /* Horizontal scroll for wide data tables on small screens */
+  .table-scroll {
+    @apply w-full overflow-x-auto -mx-0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .table-scroll table {
+    @apply min-w-[640px];
+  }
+}
+
+@layer utilities {
+  .figures {
+    @apply font-mono tabular-nums;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
